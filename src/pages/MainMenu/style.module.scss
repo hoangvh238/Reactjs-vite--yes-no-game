@@ -1,0 +1,48 @@
+@import '../../styles/base.scss';
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 90%;
+
+    &__name {
+        margin-bottom: 20%;
+    }
+
+    &__choice {
+
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        justify-content: center;
+        align-items: center;
+
+        .choice__start {
+            width: 50%;
+        }
+
+        .choice__how {
+            width: 50%;
+
+            .how__popup {
+                position: relative;
+                flex-direction: column;
+                bottom: 50%;
+                width: 100%;
+                height: 100%;
+                padding: 10px 5px 10px 5px;
+                border-radius: 20px;
+
+                &__depcription {
+                    font-size: 20px;
+                    margin-bottom: 20px;
+                }
+
+            }
+
+        }
+    }
+
+}
