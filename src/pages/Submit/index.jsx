@@ -91,7 +91,7 @@ function index() {
                 <div className={classes["submit__result"]}>
                     {[...Array(round)].map((_, i) => (
                         <div className={classes["submit__result__box"]}>
-                            <Card title={"Round " + (i + 1) + " :"} bordered={true} style={{ width: 300 }}>
+                            <Card title={"Round " + (i + 1) + " :"} bordered={true} style={{ width: 300,fontWeight:"bold" }}>
                                 {loading ? (
                                     <Skeleton active={true} />
                                 ) : (
@@ -104,7 +104,7 @@ function index() {
                         </div>
                     ))}
                 </div>
-                <Button type='primary' disabled={loading} onClick={() => (navigate('/sumary'))}>SUMMARY</Button>
+                <Button type='primary' disabled={loading} onClick={() => (navigate('/sumary'))} style={{ width: '30%', fontWeight: "bold", borderRadius: '20px'}} >SUMMARY</Button>
             </div>
         </div>
     )

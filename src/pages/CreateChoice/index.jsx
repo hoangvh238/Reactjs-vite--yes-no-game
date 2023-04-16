@@ -64,17 +64,17 @@ function index() {
           <div className={classes["choice__selection"]}>
             {[...Array(round)].map((_, i) => (
               <div className={classes["choice__selection__box"]}>
-                <div className={classes["box__round"]}><Divider  style={{ fontWeight: "bold", fontSize: "16px" }}>Round {i + 1}</Divider></div>
+                <div className={classes["box__round"]}><Divider style={{ fontWeight: "bold", fontSize: "16px" }}>Round {i + 1}</Divider></div>
                 <div className={classes["box__btn"]}>
-                  <Button className={`${classes["btn"]} ${classes["btn__true"]} ${answerList[i] == 'YES' ? classes["btn__true--select"] : ''}`} onClick={() => { handChangeChoice('YES', i) }}> YES</Button>
-                  <Button className={`${classes["btn"]} ${classes["btn__false"]} ${answerList[i] == 'NO' ? classes["btn__false--select"] : ''}`} onClick={() => { handChangeChoice('NO', i) }} >NO</Button>
+                  <Button className={`${classes["btn"]} ${classes["btn__true"]} ${answerList[i] == 'YES' ? classes["btn__true--select"] : ''}`} onClick={() => { handChangeChoice('YES', i) }} style={{ width: '40%', fontWeight: "bold", borderRadius: '20px', border: '2px solid black' }}> YES</Button>
+                  <Button className={`${classes["btn"]} ${classes["btn__false"]} ${answerList[i] == 'NO' ? classes["btn__false--select"] : ''}`} onClick={() => { handChangeChoice('NO', i) }} style={{ width: '40%', fontWeight: "bold", borderRadius: '20px', border: '2px solid black' }} >NO</Button>
                 </div>
               </div>
             ))}
           </div>
           <div className={classes["choice__nav"]}>
-            <Button className={classes["choice__nav__next"]} type='primary' disabled={currentPlayerIndex == 0} onClick={() => handleChangeTurn(-1)} >PREVIOUS</Button>
-            <Button className={classes["choice__nav__previus"]} type='primary' onClick={() => handleChangeTurn(1)} >{currentPlayerIndex + 1 == players.length ? "SUBMIT NOW" : "NEXT"}</Button>
+            <Button type='primary' disabled={currentPlayerIndex == 0} onClick={() => handleChangeTurn(-1)} style={{ width: '30%', fontWeight: "bold", borderRadius: '20px'}} >PREVIOUS</Button>
+            <Button type='primary' onClick={() => handleChangeTurn(1)} style={{ width: '30%', fontWeight: "bold", borderRadius: '20px'}} >{currentPlayerIndex + 1 == players.length ? "SUBMIT NOW" : "NEXT"}  </Button>
           </div>
         </div>
 

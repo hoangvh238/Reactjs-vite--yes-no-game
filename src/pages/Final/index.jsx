@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Table } from 'antd';
+import { Button, Table, Input } from 'antd';
 import classes from './style.module.scss';
 
 function index() {
@@ -15,13 +15,15 @@ function index() {
   const [data, setData] = useState([]);
   const [round, setRound] = useState();
   const [isCalculate, setIsCalculate] = useState(false);
+  const [searchKey, setSearchKey] = useState("");
+  const [fillData, setFillData] = useState([]);
   const columns = [
     {
       title: 'No.',
       dataIndex: 'id',
       sorter: {
         compare: (a, b) => a.id - b.id,
-        multiple: 0,
+        multiple: 2,
       },
     },
     {
@@ -29,7 +31,7 @@ function index() {
       dataIndex: 'name',
       sorter: {
         compare: (a, b) => a.name - b.name,
-        multiple: 0,
+        multiple: 1,
       },
     },
     {
@@ -55,7 +57,7 @@ function index() {
       dataIndex: 'score',
       sorter: {
         compare: (a, b) => a.score - b.score,
-        multiple: 0,
+        multiple: 2,
       },
     },
   ];
@@ -73,11 +75,20 @@ function index() {
         const percent = (score / round) * 100;
         return `${percent.toFixed(2)}%`;
       },
+
+      sorter: {
+        compare: (a, b) => a.score - b.score,
+        multiple: 1,
+      },
     },
 
     {
       title: 'Total score',
-      dataIndex :'score'
+      dataIndex: 'score',
+      sorter: {
+        compare: (a, b) => a.score - b.score,
+        multiple: 1,
+      },
     }
   ];
 
@@ -129,21 +140,28 @@ function index() {
     setIsCalculate(true);
   }, [data]);
 
+  useEffect(() => {
+    if (searchKey == "") return;
+    setFillData(data.filter(obj => obj.name === searchKey));
+  }, [searchKey]);
+
   return (
 
     <div className={classes["container"]}>
       <div className={classes["summary"]}>
         SUMMARY
         <div className={classes["summary__information"]}>
+
           <div className={classes["summary__information__total"]}>
-            <Table columns={columns} dataSource={data}></Table>
+            <Input value={searchKey} onChange={(e) => setSearchKey(e.target.value)} onBlur={() => setSearchKey("")} placeholder="Enter name..." style={{ width: '40%',border:"1px solid black" }}></Input>
+            <Table pagination={{ pageSize: 3 }} style={{ fontWeight: "bold" }} columns={columns} dataSource={!searchKey ? data : fillData}></Table>
           </div>
           <div className={classes["summary__information__specific"]}>
-            <Table columns={summaryColumns} dataSource={data}></Table>
+            <Table pagination={{ pageSize: 3 }} style={{ fontWeight: "bold" }} columns={summaryColumns} dataSource={data}></Table>
           </div>
         </div>
         <div className={classes["summary__winner"]}>{score.count != 0 ? "THE MATCH IS DRAWN !" : "THE WINNER IS : " + score.name.toLocaleUpperCase()}</div>
-        <Button type='primary' onClick={()=> {localStorage.setItem('data',null) ; navigate('/create')}}>PLAY AGAIN</Button>
+        <Button type='primary' onClick={() => { localStorage.setItem('data', null); navigate('/create') }} style={{ width: '30%', fontWeight: "bold", borderRadius: '20px' }} >PLAY AGAIN</Button>
       </div>
     </div>
   )

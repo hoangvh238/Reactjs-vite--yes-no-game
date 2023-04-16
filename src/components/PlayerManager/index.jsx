@@ -11,9 +11,10 @@ const index = ({players, columns, onStart, setIsManager }) => {
                 dataSource={players}
                 size="middle"
                 pagination={{ pageSize: 3 }}
+                style={{fontWeight: "bold"}}
             />
             <Divider style={{ fontWeight: "italic", fontSize: "15px",color:"red" }} >{(players.length > 1) ? "" : "ADD AT LEAST 2 PLAYERS TO PLAY"}</Divider>
-            <Button onClick={() => setIsManager(false)} >
+            <Button type="primary"   style={{width:'20%',fontWeight: "bold"}} onClick={() => setIsManager(false)} >
                 ADD MORE PLAYER
             </Button>
             <Divider style={{ fontWeight: "bold", fontSize: "16px" }} >{players.length > 1 ? "INPUT ROUND TO START" : ""}</Divider>
@@ -21,10 +22,10 @@ const index = ({players, columns, onStart, setIsManager }) => {
                 <Form.Item
                     name="round"
                 >
-                    <Input placeholder="Enter round..." disabled={players.length > 1 ? false : true} />
+                    <Input placeholder="Enter round..."  style={{width:'50%'}} disabled={players.length > 1 ? false : true} />
                 </Form.Item>
                 <Form.Item>
-                    <Button type="primary" htmlType="submit" disabled={players.length > 1 ? false : true}>
+                    <Button type="primary" htmlType="submit" style={{width:'20%', color : players.length > 1 ? 'white' : "red",fontWeight: "bold"}}disabled={players.length > 1 ? false : true}>
                         START GAME
                     </Button>
                 </Form.Item>

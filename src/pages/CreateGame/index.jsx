@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from 'react';
-import { Form, Input, Button, Table, Divider } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 import classes from "./style.module.scss";
@@ -43,7 +42,7 @@ function Index() {
         const playersNames = players.map((player) => player.name.toLowerCase());
 
         if (!newPlayerName) {
-            window.alert("Input cannot be null!");
+            window.alert("Please input!");
             return;
         }
 
@@ -87,9 +86,7 @@ function Index() {
 
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem('data'));
-        if (data) {
-            setPlayers(data);
-        }
+        if (data) setPlayers(data);
     }, []);
 
 
