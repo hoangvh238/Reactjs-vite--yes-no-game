@@ -57,13 +57,23 @@ function Index() {
             return;
         }
 
+        const now = new Date();
         const newPlayer = {
             id: players.length + 1,
             name: newPlayerName,
-            createAt: new Date().getDate() + '/' + (new Date().getMonth() + 1) + '-' + new Date().toLocaleTimeString(),
+            createAt: now.toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: false
+            }),
             answers: [],
             results: [],
         };
+
 
         setPlayers([...players, newPlayer]);
         setIsManager(true);

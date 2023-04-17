@@ -30,7 +30,7 @@ function index() {
       title: 'Name',
       dataIndex: 'name',
       sorter: {
-        compare: (a, b) => a.name - b.name,
+        compare: (a, b) => a.name.localeCompare(b.name),
         multiple: 1,
       },
     },
@@ -38,7 +38,7 @@ function index() {
       title: 'Date',
       dataIndex: 'createAt',
       sorter: {
-        compare: (a, b) => a.date - b.date,
+        compare: (a, b) =>  new Date(a.createAt) - new Date(b.createAt),
         multiple: 0,
       },
     },
@@ -142,7 +142,7 @@ function index() {
 
   useEffect(() => {
     if (searchKey == "") return;
-    setFillData(data.filter(obj => obj.name === searchKey));
+    setFillData(data.filter(obj => obj.name.includes(searchKey) ));
   }, [searchKey]);
 
   return (
