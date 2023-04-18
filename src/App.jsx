@@ -1,15 +1,13 @@
-import { useState } from 'react'
 import { Route,Routes } from 'react-router-dom';
 
 import './App.css'
-import MainMenu from "./pages/MainMenu/index";
-import CreateGame from "./pages/CreateGame/index";
-import CreateChoice from "./pages/CreateChoice/index";
-import Submit from "./pages/Submit/index";
-import Sumary from "./pages/Final/index";
-function App() {
-  const [count, setCount] = useState(0)
+import MainMenu from "@pages/MainMenu/index";
+import CreateGame from "@pages/CreateGame/index";
+import CreateChoice from "@page/CreateChoice/index";
+import Submit from "@page/Submit/index";
+import Sumary from "@page/Final/index";
 
+function App() {
   return (
     <div className="App">
      

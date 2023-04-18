@@ -2,12 +2,12 @@ import { React, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import classes from "./style.module.scss";
-import CreatePlayer from '../../components/CreatePlayer/index';
-import PlayerManager from '../../components/PlayerManager/index';
+import CreatePlayer from '@components/CreatePlayer/index';
+import PlayerManager from '@components/PlayerManager/index';
 
 function Index() {
     const [players, setPlayers] = useState([]);
-    const [isManager, setIsManager] = useState(false);
+    const [isManager, setIsManager] = useState(true);
     const [round, setRound] = useState(0);
     const navigate = useNavigate();
 
@@ -121,8 +121,9 @@ function Index() {
     return (
         <div className={classes["container"]}>
             <div className={classes["create"]}>
+                {<PlayerManager players={players} columns={columns} onStart={onStart} setIsManager={setIsManager}></PlayerManager>}
                 {!isManager && (<CreatePlayer onFinish={onFinish} setIsManager={setIsManager}></CreatePlayer>)}
-                {isManager && (<PlayerManager players={players} columns={columns} onStart={onStart} setIsManager={setIsManager}></PlayerManager>)}
+
             </div>
         </div>
     );

@@ -10,8 +10,9 @@ const index = ({players, columns, onStart, setIsManager }) => {
                 columns={columns}
                 dataSource={players}
                 size="middle"
-                pagination={{ pageSize: 3 }}
+                pagination={false}
                 style={{fontWeight: "bold"}}
+                className={classes["create__manager__table"]}
             />
             <Divider style={{ fontWeight: "italic", fontSize: "15px",color:"red" }} >{(players.length > 1) ? "" : "ADD AT LEAST 2 PLAYERS TO PLAY"}</Divider>
             <Button type="primary"   style={{width:'20%',fontWeight: "bold"}} onClick={() => setIsManager(false)} >

@@ -68,19 +68,6 @@ function index() {
       dataIndex: 'name',
 
     },
-    {
-      title: 'Correct percent',
-      render: (text, record) => {
-        const score = record.score;
-        const percent = (score / round) * 100;
-        return `${percent.toFixed(2)}%`;
-      },
-
-      sorter: {
-        compare: (a, b) => a.score - b.score,
-        multiple: 1,
-      },
-    },
 
     {
       title: 'Total score',
@@ -154,10 +141,10 @@ function index() {
 
           <div className={classes["summary__information__total"]}>
             <Input value={searchKey} onChange={(e) => setSearchKey(e.target.value)} onBlur={() => setSearchKey("")} placeholder="Enter name..." style={{ width: '40%',border:"1px solid black" }}></Input>
-            <Table pagination={{ pageSize: 3 }} style={{ fontWeight: "bold" }} columns={columns} dataSource={!searchKey ? data : fillData}></Table>
+            <Table pagination={false} style={{ fontWeight: "bold" }} columns={columns} dataSource={!searchKey ? data : fillData}></Table>
           </div>
           <div className={classes["summary__information__specific"]}>
-            <Table pagination={{ pageSize: 3 }} style={{ fontWeight: "bold" }} columns={summaryColumns} dataSource={data}></Table>
+            <Table pagination={false} style={{ fontWeight: "bold" }} columns={summaryColumns} dataSource={data}></Table>
           </div>
         </div>
         <div className={classes["summary__winner"]}>{score.count != 0 ? "THE MATCH IS DRAWN !" : "THE WINNER IS : " + score.name.toLocaleUpperCase()}</div>
