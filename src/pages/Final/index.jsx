@@ -68,6 +68,19 @@ function index() {
       dataIndex: 'name',
 
     },
+    {
+      title: 'Correct percent',
+      render: (text, record) => {
+        const score = record.score;
+        const percent = (score / round) * 100;
+        return Number.isInteger(percent) ? `${percent}%` : `${percent.toFixed(2)}%`;
+      },
+
+      sorter: {
+        compare: (a, b) => a.score - b.score,
+        multiple: 1,
+      },
+    },
 
     {
       title: 'Total score',
