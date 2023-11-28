@@ -1,6 +1,6 @@
-import { React, useState, useEffect } from 'react'
-import { Button, Divider } from 'antd'
-import { useNavigate } from 'react-router-dom';
+import { React, useState, useEffect } from "react";
+import { Button, Divider } from "antd";
+import { useNavigate } from "react-router-dom";
 import classes from "./style.module.scss";
 
 function index() {
@@ -12,7 +12,7 @@ function index() {
 
   const handleChangeTurn = (e) => {
     if (currentPlayerIndex + e >= players.length) {
-      navigate('/submit')
+      navigate("/submit");
       return;
     }
     setCurrentPlayerIndex((currentIndex) => {
@@ -27,16 +27,15 @@ function index() {
     if (answerList[i] == e) {
       newList[i] = "EMPTY";
       setAnswerList(newList);
-    }
-    else {
+    } else {
       newList[i] = e;
       setAnswerList(newList);
     }
-  }
+  };
 
   useEffect(() => {
-    setRound(JSON.parse(localStorage.getItem('round')));
-    let players = JSON.parse(localStorage.getItem('data'));
+    setRound(JSON.parse(localStorage.getItem("round")));
+    let players = JSON.parse(localStorage.getItem("data"));
     setPLayers(players);
     setAnswerList(players[currentPlayerIndex].answers);
   }, []);
@@ -46,13 +45,12 @@ function index() {
     let updatedPlayers = [...players];
     updatedPlayers[currentPlayerIndex].answers = answerList;
     setPLayers(updatedPlayers);
-    localStorage.setItem('data', JSON.stringify(players));
-  }, [answerList]
-  );
+    localStorage.setItem("data", JSON.stringify(players));
+  }, [answerList]);
 
   useEffect(() => {
-    localStorage.setItem('turn', JSON.stringify(currentPlayerIndex));
-    let players = JSON.parse(localStorage.getItem('data'));
+    localStorage.setItem("turn", JSON.stringify(currentPlayerIndex));
+    let players = JSON.parse(localStorage.getItem("data"));
     setAnswerList(players[currentPlayerIndex].answers);
   }, [currentPlayerIndex]);
 
@@ -60,27 +58,78 @@ function index() {
     <div>
       <div className={classes["container"]}>
         <div className={classes["choice"]}>
-          <div className={classes["choice__name"]}><Divider style={{ fontWeight: "bold", fontSize: "26px" }}>{players[currentPlayerIndex]?.name} turn</Divider></div>
+          <div className={classes["choice__name"]}>
+            <Divider style={{ fontWeight: "bold", fontSize: "26px" }}>
+              {players[currentPlayerIndex]?.name} turn
+            </Divider>
+          </div>
           <div className={classes["choice__selection"]}>
             {[...Array(round)].map((_, i) => (
               <div className={classes["choice__selection__box"]}>
-                <div className={classes["box__round"]}><Divider style={{ fontWeight: "bold", fontSize: "16px" }}>Round {i + 1}</Divider></div>
+                <div className={classes["box__round"]}>
+                  <Divider style={{ fontWeight: "bold", fontSize: "16px" }}>
+                    Round {i + 1}
+                  </Divider>
+                </div>
                 <div className={classes["box__btn"]}>
-                  <Button className={`${classes["btn"]} ${classes["btn__true"]} ${answerList[i] == 'YES' ? classes["btn__true--select"] : ''}`} onClick={() => { handChangeChoice('YES', i) }} style={{ width: '40%', fontWeight: "bold", borderRadius: '20px', border: '2px solid black' }}> YES</Button>
-                  <Button className={`${classes["btn"]} ${classes["btn__false"]} ${answerList[i] == 'NO' ? classes["btn__false--select"] : ''}`} onClick={() => { handChangeChoice('NO', i) }} style={{ width: '40%', fontWeight: "bold", borderRadius: '20px', border: '2px solid black' }} >NO</Button>
+                  <Button
+                    className={`${classes["btn"]} ${classes["btn__true"]} ${
+                      answerList[i] == "YES" ? classes["btn__true--select"] : ""
+                    }`}
+                    onClick={() => {
+                      handChangeChoice("YES", i);
+                    }}
+                    style={{
+                      width: "40%",
+                      fontWeight: "bold",
+                      borderRadius: "20px",
+                      border: "  2px solid rgb(142, 139, 139);",
+                    }}
+                  >
+                    {" "}
+                    YES
+                  </Button>
+                  <Button
+                    className={`${classes["btn"]} ${classes["btn__false"]} ${
+                      answerList[i] == "NO" ? classes["btn__false--select"] : ""
+                    }`}
+                    onClick={() => {
+                      handChangeChoice("NO", i);
+                    }}
+                    style={{
+                      width: "40%",
+                      fontWeight: "bold",
+                      borderRadius: "20px",
+                      border: " 2px solid rgb(142, 139, 139)",
+                    }}
+                  >
+                    NO
+                  </Button>
                 </div>
               </div>
             ))}
           </div>
           <div className={classes["choice__nav"]}>
-            <Button type='primary' disabled={currentPlayerIndex == 0} onClick={() => handleChangeTurn(-1)} style={{ width: '30%', fontWeight: "bold", borderRadius: '20px'}} >PREVIOUS</Button>
-            <Button type='primary' onClick={() => handleChangeTurn(1)} style={{ width: '30%', fontWeight: "bold", borderRadius: '20px'}} >{currentPlayerIndex + 1 == players.length ? "SUBMIT NOW" : "NEXT"}  </Button>
+            <Button
+              type="primary"
+              disabled={currentPlayerIndex == 0}
+              onClick={() => handleChangeTurn(-1)}
+              style={{ width: "30%", fontWeight: "bold", borderRadius: "20px" }}
+            >
+              PREVIOUS
+            </Button>
+            <Button
+              type="primary"
+              onClick={() => handleChangeTurn(1)}
+              style={{ width: "30%", fontWeight: "bold", borderRadius: "20px" }}
+            >
+              {currentPlayerIndex + 1 == players.length ? "SUBMIT NOW" : "NEXT"}{" "}
+            </Button>
           </div>
         </div>
-
       </div>
     </div>
-  )
+  );
 }
 
-export default index
+export default index;
