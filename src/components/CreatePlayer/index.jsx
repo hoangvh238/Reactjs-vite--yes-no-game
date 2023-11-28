@@ -7,7 +7,7 @@ const CreateName = ({ onFinish, setIsManager }) => {
   return (
     <div className={classes["create__name"]}>
       <div className={classes["create__name__box"]}>
-        <Button className={classes["box__close"]} shape="circle" danger icon={<CloseOutlined />} onClick={() => setIsManager(true)} />
+        <Button className={classes["box__close"]} shape="circle"  danger icon={<CloseOutlined />} onClick={() => setIsManager(true)} />
         <div className={classes["box__tiltle"]}>
           Enter new name
         </div>
